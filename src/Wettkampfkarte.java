@@ -1,9 +1,14 @@
 public class Wettkampfkarte {
 
-    private String name, vorname, klasse;
-    private int alter, lauf, sprung, wurf;
+    private final String name;
+    private final String vorname;
+    private final String klasse;
+    private final int alter;
+    private int lauf;
+    private int sprung;
+    private int wurf;
 
-    public Wettkampfkarte(String pName, String pVorname, String pKlasse, int pAlter, int pLauf , int pSprung, int pWurf){
+    public Wettkampfkarte(String pName, String pVorname, String pKlasse, int pAlter, int pLauf, int pSprung, int pWurf) {
         name = pName;
         vorname = pVorname;
         klasse = pKlasse;
@@ -13,7 +18,7 @@ public class Wettkampfkarte {
         wurf = pWurf;
     }
 
-    public Wettkampfkarte(String pName, String pVorname, String pKlasse, int pAlter){
+    public Wettkampfkarte(String pName, String pVorname, String pKlasse, int pAlter) {
         name = pName;
         vorname = pVorname;
         klasse = pKlasse;
@@ -33,26 +38,26 @@ public class Wettkampfkarte {
                 + ", lauf=" + lauf + ", sprung=" + sprung + ", wurf=" + wurf + "]";
     }
 
-    public String kartenInfoFuerDatei(){
+    public String kartenInfoFuerDatei() {
         return name + "," + vorname + "," + klasse + "," + alter + "," + lauf + "," + sprung + "," + wurf;
     }
 
     public void setPunkte(int pDisziplin, int pPunkte) {
-        if(pDisziplin == 1) {
+        if (pDisziplin == 1) {
             lauf = pPunkte;
-        }else if(pDisziplin == 2) {
+        } else if (pDisziplin == 2) {
             sprung = pPunkte;
-        }else if(pDisziplin == 3) {
+        } else if (pDisziplin == 3) {
             wurf = pPunkte;
         }
     }
 
     public int getPunkte(int pDisziplin) {
-        if(pDisziplin == 1) {
+        if (pDisziplin == 1) {
             return this.lauf;
-        }else if(pDisziplin == 2) {
+        } else if (pDisziplin == 2) {
             return this.sprung;
-        }else if(pDisziplin == 3) {
+        } else if (pDisziplin == 3) {
             return this.wurf;
         }
         return -1;
