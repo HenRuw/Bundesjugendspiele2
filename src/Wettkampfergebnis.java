@@ -96,8 +96,15 @@ public class Wettkampfergebnis implements Sortable{
         listW.append(new Wettkampfkarte(pName, pVorname, pKlasse, pAlter, pLauf, pSprung, pWurf));
     }
 
-    public Wettkampfkarte besteKarte(int pDisziplin) {
-        return null;
+    public Wettkampfkarte besteKarte(List<Wettkampfkarte> pList, int pDisziplin) {
+        Wettkampfkarte max = pList.getContent();
+        while (pList.hasAccess()){
+            if(pList.getContent().getPunkte(pDisziplin) < max.getPunkte(pDisziplin)){
+                max = pList.getContent();
+            }
+            pList.next();
+        }
+        return max;
     }
 
     public void ergaenzeKarte(Wettkampfkarte pWettkampfkarte) {
@@ -114,10 +121,13 @@ public class Wettkampfergebnis implements Sortable{
                 listW = bubbleSort(listW, pDisziplin);
                 break;
             case 2:
-                //iwas
+                listW = selectionSort(listW, pDisziplin);
+                break;
             case 3:
                 listW = insertionSort(listW,pDisziplin);
                 break;
+            case 4:
+                listW = quickSort(listW, pDisziplin);
         }
         long end1 = System.nanoTime();
         System.out.println("vergangene Zeit in Nano Sekunden: "+ (end1-start1));
@@ -159,7 +169,20 @@ public class Wettkampfergebnis implements Sortable{
 
     @Override
     public List<Wettkampfkarte> selectionSort(List<Wettkampfkarte> unsortiert, int pDisziplin) {
-        return null;
+        Wettkampfkarte besteKarte;
+        List<Wettkampfkarte> hilfsListe = new List<>();
+
+        while (!unsortiert.isEmpty()){
+            besteKarte = besteKarte(unsortiert, pDisziplin);
+            unsortiert.toFirst();
+            while(unsortiert.getContent() != besteKarte){
+                unsortiert.next();
+            }
+            hilfsListe.append(besteKarte);
+            unsortiert.remove();
+        }
+        return hilfsListe;
+
     }
 
     @Override
