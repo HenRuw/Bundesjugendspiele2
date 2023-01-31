@@ -118,6 +118,8 @@ public class Wettkampfergebnis implements Sortable{
     public void sortieren(int pDisziplin, int pVerfahren){
         long start1 = System.nanoTime();
         switch (pVerfahren){
+            case 0:
+                listW = quickSortAlle(listW);
             case 1:
                 System.out.println("Bubblesort:");
                 listW = bubbleSort(listW, pDisziplin);
