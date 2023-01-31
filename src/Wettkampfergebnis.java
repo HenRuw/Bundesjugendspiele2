@@ -107,7 +107,15 @@ public class Wettkampfergebnis implements Sortable{
     public List<Wettkampfkarte> getWettkampfliste() {
         return this.listW;
     }
-
+    public void sortieren(int pDisziplin, int pVerfahren){
+        switch (pVerfahren){
+            case 1:
+                bubbleSort(listW, pDisziplin);
+                break;
+            case 2:
+                //TODO sortierverfahren einfügen
+        }
+    }
     @Override
     public List<Wettkampfkarte> bubbleSort(List<Wettkampfkarte> unsortiert, int pDisziplin) {
         Wettkampfkarte dummy = new Wettkampfkarte("dummy", "dummy", "dummy", -1, 10000, 10000, 10000);
