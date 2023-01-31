@@ -3,7 +3,7 @@
 import java.io.*;
 import java.util.Arrays;
 
-public class Wettkampfergebnis {
+public class Wettkampfergebnis implements Sortable{
 
     List<Wettkampfkarte> listW; //w = wettkampfkarten
 
@@ -108,7 +108,8 @@ public class Wettkampfergebnis {
         return this.listW;
     }
 
-    public void bubbleSort(int pDisziplin) {
+    @Override
+    public List<Wettkampfkarte> bubbleSort(List<Wettkampfkarte> unsortiert, int pDisziplin) {
         Wettkampfkarte dummy = new Wettkampfkarte("dummy", "dummy", "dummy", -1, 10000, 10000, 10000);
         Wettkampfkarte vorgaenger;
         boolean wurdeGetauscht;
@@ -118,27 +119,43 @@ public class Wettkampfergebnis {
         while (wurdeGetauscht) {
             wurdeGetauscht = false;
             index = 0;
-            listW.toFirst();
+            unsortiert.toFirst();
             vorgaenger = dummy;
-            while (listW.hasAccess()) {
-                if (listW.getContent().getPunkte(pDisziplin) > vorgaenger.getPunkte(pDisziplin)) {
+            while (unsortiert.hasAccess()) {
+                if (unsortiert.getContent().getPunkte(pDisziplin) > vorgaenger.getPunkte(pDisziplin)) {
                     Wettkampfkarte temp;
                     int pos;
-                    temp = listW.getContent();
+                    temp = unsortiert.getContent();
                     pos = index;
-                    listW.remove();
-                    listW.toFirst();
+                    unsortiert.remove();
+                    unsortiert.toFirst();
                     for (int i = 0; i < pos - 1; i++) {
-                        listW.next();
+                        unsortiert.next();
                     }
-                    listW.insert(temp);
+                    unsortiert.insert(temp);
                     wurdeGetauscht = true;
                 }
-                vorgaenger = listW.getContent();
-                listW.next();
+                vorgaenger = unsortiert.getContent();
+                unsortiert.next();
                 index++;
             }
         }
+        return unsortiert;
+    }
+
+    @Override
+    public List<Wettkampfkarte> selectionSort(List<Wettkampfkarte> unsortiert, int pDisziplin) {
+        return null;
+    }
+
+    @Override
+    public List<Wettkampfkarte> insertionSort(List<Wettkampfkarte> unsortiert, int pDisziplin) {
+        return null;
+    }
+
+    @Override
+    public List<Wettkampfkarte> quickSort(List<Wettkampfkarte> unsortiert, int pDisziplin) {
+        return null;
     }
 }
 
