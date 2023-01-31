@@ -119,16 +119,21 @@ public class Wettkampfergebnis implements Sortable{
         long start1 = System.nanoTime();
         switch (pVerfahren){
             case 1:
+                System.out.println("Bubblesort:");
                 listW = bubbleSort(listW, pDisziplin);
                 break;
             case 2:
+                System.out.println("Selectionsort:");
                 listW = selectionSort(listW, pDisziplin);
                 break;
             case 3:
+                System.out.println("Insertionsort:");
                 listW = insertionSort(listW,pDisziplin);
                 break;
             case 4:
+                System.out.println("Quicksort:");
                 listW = quickSort(listW, pDisziplin);
+                break;
         }
         long end1 = System.nanoTime();
         System.out.println("vergangene Zeit in Nano Sekunden: "+ (end1-start1));
