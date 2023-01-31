@@ -8,11 +8,11 @@
 
 public interface Sortable
 {
-    List<Wettkampfkarte> bubbleSort(List<Wettkampfkarte> unsortiert);
+    List<Wettkampfkarte> bubbleSort(List<Wettkampfkarte> unsortiert, int pDisziplin);
 
-    List<Wettkampfkarte> selectionSort(List<Wettkampfkarte> unsortiert);
+    List<Wettkampfkarte> selectionSort(List<Wettkampfkarte> unsortiert, int pDisziplin);
 
-    List<Wettkampfkarte> insertionSort(List<Wettkampfkarte> unsortiert);
+    List<Wettkampfkarte> insertionSort(List<Wettkampfkarte> unsortiert, int pDisziplin);
 
-    List<Wettkampfkarte> quickSort(List<Wettkampfkarte> unsortiert);
+    List<Wettkampfkarte> quickSort(List<Wettkampfkarte> unsortiert, int pDisziplin);
 }
