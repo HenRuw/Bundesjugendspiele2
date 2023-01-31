@@ -108,13 +108,19 @@ public class Wettkampfergebnis implements Sortable{
         return this.listW;
     }
     public void sortieren(int pDisziplin, int pVerfahren){
+        long start1 = System.nanoTime();
         switch (pVerfahren){
             case 1:
-                bubbleSort(listW, pDisziplin);
+                listW = bubbleSort(listW, pDisziplin);
                 break;
             case 2:
-                //TODO sortierverfahren einfügen
+                //iwas
+            case 3:
+                listW = insertionSort(listW,pDisziplin);
+                break;
         }
+        long end1 = System.nanoTime();
+        System.out.println("vergangene Zeit in Nano Sekunden: "+ (end1-start1));
     }
     @Override
     public List<Wettkampfkarte> bubbleSort(List<Wettkampfkarte> unsortiert, int pDisziplin) {
@@ -158,7 +164,23 @@ public class Wettkampfergebnis implements Sortable{
 
     @Override
     public List<Wettkampfkarte> insertionSort(List<Wettkampfkarte> unsortiert, int pDisziplin) {
-        return null;
+        List<Wettkampfkarte> hilfsListe = new List<>();
+        while (!unsortiert.isEmpty()){
+            unsortiert.toFirst();
+            Wettkampfkarte ek = unsortiert.getContent();
+            hilfsListe.toFirst();
+            while (hilfsListe.hasAccess() && ek.getPunkte(pDisziplin) < hilfsListe.getContent().getPunkte(pDisziplin)){
+                hilfsListe.next();
+            }
+            if (hilfsListe.hasAccess()){
+                hilfsListe.insert(ek);
+            }
+            else{
+                hilfsListe.append(ek);
+            }
+            unsortiert.remove();
+        }
+        return hilfsListe;
     }
 
     @Override

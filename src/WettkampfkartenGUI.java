@@ -240,14 +240,7 @@ public class WettkampfkartenGUI extends JFrame {
     }
 
     public void btSortieren_ActionPerformed(ActionEvent evt) {
-        switch (tfVerfahren.getText()) {
-            case "1":
-                we.sortieren(Integer.parseInt(tfDisziplin.getText()), Integer.parseInt(tfVerfahren.getText()));
-                break;
-            case "2":
-                //TODO
-                // Weitere Sortierverfahren einfügen
-        }
+        we.sortieren(Integer.parseInt(tfDisziplin.getText()), Integer.parseInt(tfVerfahren.getText()));
         updateList();
 
     }
