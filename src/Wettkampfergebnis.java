@@ -211,7 +211,32 @@ public class Wettkampfergebnis implements Sortable{
 
     @Override
     public List<Wettkampfkarte> quickSort(List<Wettkampfkarte> unsortiert, int pDisziplin) {
-        return null;
+        unsortiert.toFirst();
+        unsortiert.next();
+        unsortiert.next();
+        if (unsortiert.hasAccess()){
+            unsortiert.toFirst();
+            Wettkampfkarte piv = unsortiert.getContent();
+            unsortiert.remove();
+            List<Wettkampfkarte> groessere = new List<>();
+            List<Wettkampfkarte> kleinere = new List<>();
+            while (!unsortiert.isEmpty()){
+                if (unsortiert.getContent().getPunkte(pDisziplin) > piv.getPunkte(pDisziplin)){
+                    groessere.append(unsortiert.getContent());
+                    unsortiert.remove();
+                }
+                else {
+                    kleinere.append(unsortiert.getContent());
+                    unsortiert.remove();
+                }
+            }
+            quickSortAlle(groessere);
+            quickSortAlle(kleinere);
+            unsortiert.concat(groessere);
+            unsortiert.append(piv);
+            unsortiert.concat(kleinere);
+        }
+        return unsortiert;
     }
 
     public List<Wettkampfkarte> quickSortAlle(List<Wettkampfkarte> unsortiert){
