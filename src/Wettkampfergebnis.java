@@ -97,9 +97,10 @@ public class Wettkampfergebnis implements Sortable{
     }
 
     public Wettkampfkarte besteKarte(List<Wettkampfkarte> pList, int pDisziplin) {
+        pList.toFirst();
         Wettkampfkarte max = pList.getContent();
         while (pList.hasAccess()){
-            if(pList.getContent().getPunkte(pDisziplin) < max.getPunkte(pDisziplin)){
+            if(pList.getContent().getPunkte(pDisziplin) > max.getPunkte(pDisziplin)){
                 max = pList.getContent();
             }
             pList.next();
