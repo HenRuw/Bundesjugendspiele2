@@ -117,6 +117,8 @@ public class Wettkampfergebnis implements Sortable{
     public void sortieren(int pDisziplin, int pVerfahren){
         long start1 = System.nanoTime();
         switch (pVerfahren){
+            case 0:
+                listW = quickSortAlle(listW);
             case 1:
                 listW = bubbleSort(listW, pDisziplin);
                 break;
@@ -127,7 +129,7 @@ public class Wettkampfergebnis implements Sortable{
                 listW = insertionSort(listW,pDisziplin);
                 break;
             case 4:
-                listW = quickSort(listW, pDisziplin);
+                listW = quickSort(listW,pDisziplin);
         }
         long end1 = System.nanoTime();
         System.out.println("vergangene Zeit in Nano Sekunden: "+ (end1-start1));
