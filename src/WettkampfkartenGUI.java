@@ -76,12 +76,12 @@ public class WettkampfkartenGUI extends JFrame {
         btBester.setMargin(new Insets(2, 2, 2, 2));
         btBester.addActionListener(this::btBester_ActionPerformed);
         cp.add(btBester);
-        JButton btBeenden = new JButton();
-        btBeenden.setBounds(96, 400, 96, 24);
-        btBeenden.setText("Beenden");
-        btBeenden.setMargin(new Insets(2, 2, 2, 2));
-        btBeenden.addActionListener(this::btBeenden_ActionPerformed);
-        cp.add(btBeenden);
+        JButton btZeit = new JButton();
+        btZeit.setBounds(96, 400, 96, 24);
+        btZeit.setText("Zeit");
+        btZeit.setMargin(new Insets(2, 2, 2, 2));
+        btZeit.addActionListener(this::btZeit_ActionPerformed);
+        cp.add(btZeit);
         JButton btNeueKarteHinzufuegen = new JButton();
         btNeueKarteHinzufuegen.setBounds(40, 296, 184, 24);
         btNeueKarteHinzufuegen.setText("Neue Karte hinzufügen");
@@ -225,13 +225,14 @@ public class WettkampfkartenGUI extends JFrame {
         tfWurf.setText("");
     }
 
-    public void btBeenden_ActionPerformed(ActionEvent evt) {
-        // TODO hier Quelltext einfügen
-        // Bestätigungs-Fenster öffnen
-        int result = JOptionPane.showConfirmDialog(null, "Willst du das Programm wirklich schließen?", "Bist du dir sicher?", JOptionPane.YES_NO_OPTION);
-        if (result == 0) {        // Bei JA: Schließung des Programms
-            System.exit(0);        // Schließung des Programms
+    public void btZeit_ActionPerformed(ActionEvent evt) {
+        long time = 0;
+        int wiederholungen = 10;
+        for (int i = 0; i < wiederholungen; i++) {
+            time += we.sortieren(Integer.parseInt(tfDisziplin.getText()), Integer.parseInt(tfVerfahren.getText()));
         }
+        System.out.println("Die durchschnittliche Laufdauer bei "+ wiederholungen + " Wiederholungen beträgt:");
+        System.out.println(time/wiederholungen);
     }
 
     public void btBester_ActionPerformed(ActionEvent evt) {

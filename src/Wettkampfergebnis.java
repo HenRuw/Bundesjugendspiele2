@@ -115,7 +115,7 @@ public class Wettkampfergebnis implements Sortable{
     public List<Wettkampfkarte> getWettkampfliste() {
         return this.listW;
     }
-    public void sortieren(int pDisziplin, int pVerfahren){
+    public long sortieren(int pDisziplin, int pVerfahren){
         long start1 = System.nanoTime();
         switch (pVerfahren){
             case 0:
@@ -139,6 +139,8 @@ public class Wettkampfergebnis implements Sortable{
         }
         long end1 = System.nanoTime();
         System.out.println("vergangene Zeit in Nano Sekunden: "+ (end1-start1));
+
+        return end1-start1;
     }
     @Override
     public List<Wettkampfkarte> bubbleSort(List<Wettkampfkarte> unsortiert, int pDisziplin) {
