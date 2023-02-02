@@ -237,6 +237,7 @@ public class WettkampfkartenGUI extends JFrame {
 
     public void btBester_ActionPerformed(ActionEvent evt) {
         we.sortieren(0,0);
+        we.generiereDaten(8);
         updateList();
 
     }

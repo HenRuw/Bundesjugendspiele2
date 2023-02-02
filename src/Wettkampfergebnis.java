@@ -46,14 +46,17 @@ public class Wettkampfergebnis implements Sortable{
         }
     }
     public void generiereDaten(int anzahl){
-        File file = new File((datName));
-
-        if (!file.canRead() || !file.isFile())
+        File vornamen = new File(("src/vornamen.txt"));
+        System.out.println(vornamen.canRead());
+        if (!vornamen.canRead() || !vornamen.isFile()){
             System.exit(0);
+        }
+
 
         BufferedReader in = null;
         try {
-            in = new BufferedReader(new FileReader(datName));
+            System.out.println(2);
+            in = new BufferedReader(new FileReader("src/vornamen.txt"));
             String zeile;
             while ((zeile = in.readLine()) != null) {
                 System.out.println(zeile);
