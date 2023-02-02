@@ -45,7 +45,30 @@ public class Wettkampfergebnis implements Sortable{
             System.err.println(ioe);
         }
     }
+    public void generiereDaten(int anzahl){
+        File file = new File((datName));
 
+        if (!file.canRead() || !file.isFile())
+            System.exit(0);
+
+        BufferedReader in = null;
+        try {
+            in = new BufferedReader(new FileReader(datName));
+            String zeile;
+            while ((zeile = in.readLine()) != null) {
+                System.out.println(zeile);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (in != null)
+                try {
+                    in.close();
+                } catch (IOException ignored) {
+                }
+        }
+
+    }
     public void load(String datName) {
 
         File file = new File(datName);
