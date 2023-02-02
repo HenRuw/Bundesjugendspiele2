@@ -2,6 +2,8 @@
 
 import java.io.*;
 import java.util.Arrays;
+import java.util.Random;
+import java.util.random.*;
 
 public class Wettkampfergebnis implements Sortable{
 
@@ -43,7 +45,30 @@ public class Wettkampfergebnis implements Sortable{
             System.err.println(ioe);
         }
     }
+    public void generiereDaten(int anzahl){
+        File file = new File((datName));
 
+        if (!file.canRead() || !file.isFile())
+            System.exit(0);
+
+        BufferedReader in = null;
+        try {
+            in = new BufferedReader(new FileReader(datName));
+            String zeile;
+            while ((zeile = in.readLine()) != null) {
+                System.out.println(zeile);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (in != null)
+                try {
+                    in.close();
+                } catch (IOException ignored) {
+                }
+        }
+
+    }
     public void load(String datName) {
 
         File file = new File(datName);
@@ -115,6 +140,17 @@ public class Wettkampfergebnis implements Sortable{
     public List<Wettkampfkarte> getWettkampfliste() {
         return this.listW;
     }
+
+    public List<Wettkampfkarte> shuffle(List<Wettkampfkarte> pList) {
+        Random random = new Random();
+        for (int i = 0; i < 1000; i++) {
+            for (int j = 0; j < random.nextInt(); j++) {
+
+            }
+        }
+        return listW;
+    }
+
     public long sortieren(int pDisziplin, int pVerfahren){
         long start1 = System.nanoTime();
         switch (pVerfahren){
