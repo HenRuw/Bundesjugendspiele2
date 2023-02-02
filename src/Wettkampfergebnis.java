@@ -144,7 +144,6 @@ public class Wettkampfergebnis implements Sortable{
     }
     @Override
     public List<Wettkampfkarte> bubbleSort(List<Wettkampfkarte> unsortiert, int pDisziplin) {
-        Wettkampfkarte dummy = new Wettkampfkarte("dummy", "dummy", "dummy", -1, 10000, 10000, 10000);
         Wettkampfkarte vorgaenger;
         boolean wurdeGetauscht;
         int index;
@@ -154,7 +153,8 @@ public class Wettkampfergebnis implements Sortable{
             wurdeGetauscht = false;
             index = 0;
             unsortiert.toFirst();
-            vorgaenger = dummy;
+            vorgaenger = unsortiert.getContent();
+            unsortiert.next();
             while (unsortiert.hasAccess()) {
                 if (unsortiert.getContent().getPunkte(pDisziplin) > vorgaenger.getPunkte(pDisziplin)) {
                     Wettkampfkarte temp;
