@@ -227,7 +227,7 @@ public class WettkampfkartenGUI extends JFrame {
 
     public void btZeit_ActionPerformed(ActionEvent evt) {
         long time = 0;
-        int wiederholungen = 10;
+        int wiederholungen = 10000;
         for (int i = 0; i < wiederholungen; i++) {
             time += we.sortieren(Integer.parseInt(tfDisziplin.getText()), Integer.parseInt(tfVerfahren.getText()));
         }
