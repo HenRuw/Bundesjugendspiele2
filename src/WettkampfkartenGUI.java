@@ -40,7 +40,13 @@ public class WettkampfkartenGUI extends JFrame {
     private final List<String> configs = new List<>();
 
     private final Wettkampfergebnis we = new Wettkampfergebnis();
+
+    private final Wettkampfkartenersteller wke = new Wettkampfkartenersteller();
+
+    private final int anzahlKarten = 100;
+
     // Ende Attribute
+
 
     public WettkampfkartenGUI() {
         // Frame-Initialisierung
@@ -226,23 +232,19 @@ public class WettkampfkartenGUI extends JFrame {
     }
 
     public void btZeit_ActionPerformed(ActionEvent evt) {
-        long time = 0;
-        int wiederholungen = 10000;
-        for (int i = 0; i < wiederholungen; i++) {
-            time += we.sortieren(Integer.parseInt(tfDisziplin.getText()), Integer.parseInt(tfVerfahren.getText()));
-        }
-        System.out.println("Die durchschnittliche Laufdauer bei "+ wiederholungen + " Wiederholungen beträgt:");
-        System.out.println(time/wiederholungen);
+        wke.kartenErstellen(anzahlKarten);
+
     }
 
     public void btBester_ActionPerformed(ActionEvent evt) {
-        we.sortieren(0,0);
+        we.shuffleList();
         updateList();
 
     }
 
     public void btSortieren_ActionPerformed(ActionEvent evt) {
         we.sortieren(Integer.parseInt(tfDisziplin.getText()), Integer.parseInt(tfVerfahren.getText()));
+        we.shuffleList();
         updateList();
 
     }
@@ -310,11 +312,11 @@ public class WettkampfkartenGUI extends JFrame {
 
     private void updateList() { // Zum Aktualisieren der Listen-Ansicht
         taWettkampfliste.setText(""); // Leeren der TextArea
-        List<Wettkampfkarte> tempWListe = we.getWettkampfliste(); // Kopie der Liste erstellen
-        tempWListe.toFirst(); // Zum ersten Objekt gehen
-        while (tempWListe.hasAccess()) { // Nur solange Zugriff vorhanden ist
-            taWettkampfliste.setText(taWettkampfliste.getText() + tempWListe.getContent().getWettkampfkarteUebersicht() + "\n");
-            tempWListe.next();
+        List<Wettkampfkarte> tempWList = we.getWettkampfliste(); // Kopie der Liste erstellen
+        tempWList.toFirst(); // Zum ersten Objekt gehen
+        while (tempWList.hasAccess()) { // Nur solange Zugriff vorhanden ist
+            taWettkampfliste.setText(taWettkampfliste.getText() + tempWList.getContent().getWettkampfkarteUebersicht() + "\n");
+            tempWList.next();
         }
     }
 

@@ -2,7 +2,9 @@
 
 import java.io.*;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.random.*;
 
 public class Wettkampfergebnis implements Sortable{
@@ -45,6 +47,8 @@ public class Wettkampfergebnis implements Sortable{
             System.err.println(ioe);
         }
     }
+
+    /*
     public void generiereDaten(int anzahl){
         File file = new File((datName));
 
@@ -69,6 +73,8 @@ public class Wettkampfergebnis implements Sortable{
         }
 
     }
+
+    */
     public void load(String datName) {
 
         File file = new File(datName);
@@ -177,6 +183,37 @@ public class Wettkampfergebnis implements Sortable{
         System.out.println("vergangene Zeit in Nano Sekunden: "+ (end1-start1));
 
         return end1-start1;
+    }
+
+    public void shuffleList(){
+        listW.toFirst();
+        int laenge = 0;
+        while (listW.hasAccess()){
+            laenge++;
+            listW.next();
+        }
+        Wettkampfkarte[] a = new Wettkampfkarte[laenge];
+        listW.toFirst();
+        int i = 0;
+        while (listW.hasAccess()){
+            a[i] = listW.getContent();
+            listW.remove();
+            i++;
+        }
+
+        Random rand = new Random();
+
+        for (int j = 0; j < a.length; j++) {
+            int randomIndexToSwap = ThreadLocalRandom.current().nextInt(0, a.length);
+
+            Wettkampfkarte temp = a[randomIndexToSwap];
+            a[randomIndexToSwap] = a[j];
+            a[j] = temp;
+        }
+
+        for (int j = 0; j < a.length; j++) {
+            listW.append(a[j]);
+        }
     }
     @Override
     public List<Wettkampfkarte> bubbleSort(List<Wettkampfkarte> unsortiert, int pDisziplin) {
