@@ -119,7 +119,12 @@ public class Wettkampfergebnis implements Sortable{
             }
         }
         //Erstellung der Wettkampfkarte anhand der gespeicherten Informationen im Array
-        return new Wettkampfkarte(karte[0], karte[1], karte[2], Integer.parseInt(karte[3]), Integer.parseInt(karte[4]), Integer.parseInt(karte[5]), Integer.parseInt(karte[6]));
+
+
+
+
+        Wettkampfkarte k = new Wettkampfkarte(karte[0], karte[1], karte[2], Integer.parseInt(karte[3]), Integer.parseInt(karte[4]), Integer.parseInt(karte[5]), Integer.parseInt(karte[6]));
+        return k;
     }
 
     public void karteHinzufuegen(String pName, String pVorname, String pKlasse, int pAlter) {

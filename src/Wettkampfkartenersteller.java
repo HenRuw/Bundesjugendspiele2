@@ -27,19 +27,45 @@ public class Wettkampfkartenersteller
         schreibeDatei(karten);
     }
 
-    private String[] erzeugeKarten(int anzahl){
+    public String getRandomLineFromTheFile(String filePathWithFileName) throws Exception {
+
+        File file = new File(filePathWithFileName);
+        final RandomAccessFile f = new RandomAccessFile(file, "r");
+        final long randomLocation = (long) (Math.random() * f.length());
+        f.seek(randomLocation);
+        f.readLine();
+        String randomLine = f.readLine();
+        f.close();
+        return randomLine;
+    }
+
+    private String[] erzeugeKarten(int anzahl)  {
         Random r = new Random();
         String[] out = new String[anzahl];
 
         for (int i = 0; i < anzahl; i++){
             String klasse = Integer.toString(r.nextInt(5, 12));
             String alter = Integer.toString(r.nextInt(10,19));
-            String lauf = Integer.toString(r.nextInt(0,1000));
-            String sprung = Integer.toString(r.nextInt(0,1000));
-            String punkte = Integer.toString(r.nextInt(0,1000));
+            String lauf = Integer.toString(r.nextInt(1,1000));
+            String sprung = Integer.toString(r.nextInt(1,1000));
+            String punkte = Integer.toString(r.nextInt(1,1000));
 
-            out[i] = "Name" + Integer.toString(i);
-            out[i] = out[i] + ",Vorname" + Integer.toString(i);
+
+            try {
+                String name = getRandomLineFromTheFile("src/nachnamen.txt");
+                out[i] = name;
+
+            }catch (Exception e){
+                System.err.println(e);
+            }
+
+            try {
+                String name = getRandomLineFromTheFile("src/vornamen.txt");
+                out[i] = out[i] + "," + name;
+
+            }catch (Exception e){
+                System.err.println(e);
+            }
             out[i] = out[i] +"," + klasse;
             out[i] = out[i] +"," + alter;
             out[i] = out[i] +"," + lauf;

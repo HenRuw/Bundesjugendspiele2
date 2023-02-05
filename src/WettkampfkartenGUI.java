@@ -43,7 +43,7 @@ public class WettkampfkartenGUI extends JFrame {
 
     private final Wettkampfkartenersteller wke = new Wettkampfkartenersteller();
 
-    private final int anzahlKarten = 100;
+    private final int anzahlKarten = 1000;
 
     // Ende Attribute
 
