@@ -206,9 +206,32 @@ public class Wettkampfergebnis implements Sortable{
         }
         return out;
     }
+
+    private List<Wettkampfkarte> applyCountingSortOn(List<Wettkampfkarte> unsortiert, int placeValue, int pDisziplin){
+        return null;
+        //https://www.baeldung.com/java-radix-sort
+    }
     @Override
     public List<Wettkampfkarte> radixSort(List<Wettkampfkarte> unsortiert, int pDisziplin){
+        int maximumNumber = maximumNumber(unsortiert, pDisziplin);
+        int numberOfDigits = numberOfDigits(maximumNumber);
+        int placeValue = 1;
+        while (numberOfDigits-- > 0) {
+            unsortiert = applyCountingSortOn(unsortiert, placeValue, pDisziplin);
+            placeValue *= 10;
+        }
         return null;
+    }
+
+    private int numberOfDigits(int pNum){
+        int num = pNum;
+        int count = 0;
+
+        while (num > 0) {
+            num /= 10;
+            count++;
+        }
+        return count;
     }
     @Override
     public List<Wettkampfkarte> bubbleSort(List<Wettkampfkarte> unsortiert, int pDisziplin) {
