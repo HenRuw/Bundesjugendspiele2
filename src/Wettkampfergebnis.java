@@ -186,6 +186,10 @@ public class Wettkampfergebnis implements Sortable{
                 System.out.println("Quicksort:");
                 listW = quickSort(listW, pDisziplin);
                 break;
+            case 5:
+                System.out.println("Quicksort:");
+                listW = radixSort(listW, pDisziplin);
+
         }
         long end1 = System.nanoTime();
         System.out.println("vergangene Zeit in Nano Sekunden: "+ (end1-start1));
@@ -222,6 +226,13 @@ public class Wettkampfergebnis implements Sortable{
         for (int j = 0; j < a.length; j++) {
             listW.append(a[j]);
         }
+    }
+    private List<Wettkampfkarte> maximumNumber(List<Wettkampfkarte> pList){
+        return null;
+    }
+    @Override
+    public List<Wettkampfkarte> radixSort(List<Wettkampfkarte> unsortiert, int pDisziplin){
+        return null;
     }
     @Override
     public List<Wettkampfkarte> bubbleSort(List<Wettkampfkarte> unsortiert, int pDisziplin) {

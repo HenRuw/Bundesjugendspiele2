@@ -8,6 +8,7 @@
 
 public interface Sortable
 {
+    List<Wettkampfkarte> radixSort(List<Wettkampfkarte> unsortiert, int pDisziplin);
     List<Wettkampfkarte> bubbleSort(List<Wettkampfkarte> unsortiert, int pDisziplin);
 
     List<Wettkampfkarte> selectionSort(List<Wettkampfkarte> unsortiert, int pDisziplin);

@@ -76,18 +76,18 @@ public class WettkampfkartenGUI extends JFrame {
         tfDisziplin.setBounds(416, 312, 40, 24);
         tfDisziplin.setText("");
         cp.add(tfDisziplin);
-        JButton btBester = new JButton();
-        btBester.setBounds(520, 312, 88, 24);
-        btBester.setText("Beste/r");
-        btBester.setMargin(new Insets(2, 2, 2, 2));
-        btBester.addActionListener(this::btBester_ActionPerformed);
-        cp.add(btBester);
-        JButton btZeit = new JButton();
-        btZeit.setBounds(96, 400, 96, 24);
-        btZeit.setText("Zeit");
-        btZeit.setMargin(new Insets(2, 2, 2, 2));
-        btZeit.addActionListener(this::btZeit_ActionPerformed);
-        cp.add(btZeit);
+        JButton btShuffle = new JButton();
+        btShuffle.setBounds(520, 312, 88, 24);
+        btShuffle.setText("Shuffle");
+        btShuffle.setMargin(new Insets(2, 2, 2, 2));
+        btShuffle.addActionListener(this::btShuffle_ActionPerformed);
+        cp.add(btShuffle);
+        JButton btGeneriere = new JButton();
+        btGeneriere.setBounds(96, 400, 96, 24);
+        btGeneriere.setText("Generiere");
+        btGeneriere.setMargin(new Insets(2, 2, 2, 2));
+        btGeneriere.addActionListener(this::btGeneriere_ActionPerformed);
+        cp.add(btGeneriere);
         JButton btNeueKarteHinzufuegen = new JButton();
         btNeueKarteHinzufuegen.setBounds(40, 296, 184, 24);
         btNeueKarteHinzufuegen.setText("Neue Karte hinzufügen");
@@ -231,12 +231,12 @@ public class WettkampfkartenGUI extends JFrame {
         tfWurf.setText("");
     }
 
-    public void btZeit_ActionPerformed(ActionEvent evt) {
+    public void btGeneriere_ActionPerformed(ActionEvent evt) {
         wke.kartenErstellen(anzahlKarten);
 
     }
 
-    public void btBester_ActionPerformed(ActionEvent evt) {
+    public void btShuffle_ActionPerformed(ActionEvent evt) {
         we.shuffleList();
         updateList();
 
@@ -244,7 +244,6 @@ public class WettkampfkartenGUI extends JFrame {
 
     public void btSortieren_ActionPerformed(ActionEvent evt) {
         we.sortieren(Integer.parseInt(tfDisziplin.getText()), Integer.parseInt(tfVerfahren.getText()));
-        we.shuffleList();
         updateList();
 
     }
