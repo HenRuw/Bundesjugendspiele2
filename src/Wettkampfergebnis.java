@@ -47,37 +47,6 @@ public class Wettkampfergebnis implements Sortable{
             System.err.println(ioe);
         }
     }
-
-    /*
-    public void generiereDaten(int anzahl){
-        File vornamen = new File(("src/vornamen.txt"));
-        System.out.println(vornamen.canRead());
-        if (!vornamen.canRead() || !vornamen.isFile()){
-            System.exit(0);
-        }
-
-
-        BufferedReader in = null;
-        try {
-            System.out.println(2);
-            in = new BufferedReader(new FileReader("src/vornamen.txt"));
-            String zeile;
-            while ((zeile = in.readLine()) != null) {
-                System.out.println(zeile);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (in != null)
-                try {
-                    in.close();
-                } catch (IOException ignored) {
-                }
-        }
-
-    }
-
-    */
     public void load(String datName) {
 
         File file = new File(datName);
