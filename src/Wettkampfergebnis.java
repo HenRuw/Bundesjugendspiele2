@@ -227,8 +227,15 @@ public class Wettkampfergebnis implements Sortable{
             listW.append(a[j]);
         }
     }
-    private List<Wettkampfkarte> maximumNumber(List<Wettkampfkarte> pList){
-        return null;
+    private int maximumNumber(List<Wettkampfkarte> pList, int disziplin){
+        int out = 0;
+        pList.toFirst();
+        while(pList.hasAccess()){
+            if (pList.getContent().getPunkte(disziplin) > out){
+                out = pList.getContent().getPunkte(disziplin);
+            }
+        }
+        return out;
     }
     @Override
     public List<Wettkampfkarte> radixSort(List<Wettkampfkarte> unsortiert, int pDisziplin){
