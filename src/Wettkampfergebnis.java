@@ -1,5 +1,7 @@
 
 
+import abiturklassen.Queue;
+
 import java.io.*;
 import java.util.Arrays;
 import java.util.Collections;
@@ -211,14 +213,25 @@ public class Wettkampfergebnis implements Sortable{
         return null;
         //https://www.baeldung.com/java-radix-sort
     }
+
+    private int stelleErmitteln(int zahl, int stelle){
+        return (zahl/(int)Math.pow(zahl,stelle))%10;
+    }
     @Override
-    public List<Wettkampfkarte> radixSort(List<Wettkampfkarte> unsortiert, int pDisziplin){
-        int maximumNumber = maximumNumber(unsortiert, pDisziplin);
-        int numberOfDigits = numberOfDigits(maximumNumber);
-        int placeValue = 1;
-        while (numberOfDigits-- > 0) {
-            unsortiert = applyCountingSortOn(unsortiert, placeValue, pDisziplin);
-            placeValue *= 10;
+    public List < Wettkampfkarte > radixSort(List < Wettkampfkarte > unsortiert, int pDisziplin) {
+        int numberOfDigits = numberOfDigits(maximumNumber(unsortiert, pDisziplin));
+        int base = 10;
+        Queue < Wettkampfkarte > [] buckets = new Queue[base];
+        for (int i = 0; i < base; i++) {
+            buckets[i] = new Queue < Wettkampfkarte > ();
+        }
+        for (int i = 0; i < numberOfDigits; i++) {
+
+            while (unsortiert.hasAccess()) {
+                buckets[stelleErmitteln(unsortiert.getContent().getPunkte(pDisziplin), i)].enqueue(unsortiert.getContent());
+                unsortiert.remove();
+            }
+
         }
         return null;
     }
