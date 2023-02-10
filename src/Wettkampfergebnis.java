@@ -1,6 +1,7 @@
 
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Random;
@@ -166,6 +167,86 @@ public class Wettkampfergebnis implements Sortable{
         return end1-start1;
     }
 
+    public Wettkampfkarte sucheInListe(Wettkampfkarte gesucht){
+        listW.toFirst();
+        ArrayList<Wettkampfkarte> gefundene = new ArrayList<>();
+        while(listW.hasAccess()){
+            gefundene.add(listW.getContent());
+            listW.next();
+        }
+        if (gesucht.getVorname() != null){
+            gefundene = sVorname(gesucht.getVorname(), gefundene);
+        }
+        if (gesucht.getName() != null){
+            gefundene = sName(gesucht.getName(), gefundene);
+        }
+        if (gesucht.getKlasse() != null){
+            gefundene = sKlasse(gesucht.getName(), gefundene);
+        }
+        if (gesucht.getAlter() != 0){
+            gefundene = sAlter(gesucht.getAlter(), gefundene);
+        }
+        if (gesucht.getPunkte(0) != 0){
+            gefundene = sPunkte(gesucht.getPunkte(0), gefundene, 0);
+        }
+        if (gesucht.getPunkte(1) != 0){
+            gefundene = sPunkte(gesucht.getPunkte(1), gefundene, 1);
+        }
+        if (gesucht.getPunkte(2) != 0) {
+            gefundene = sPunkte(gesucht.getPunkte(2), gefundene, 2);
+        }
+        return gefundene.get(0);
+    }
+
+    public ArrayList<Wettkampfkarte> sVorname(String vorname, ArrayList<Wettkampfkarte> pList){
+        ArrayList<Wettkampfkarte> gefunden = new ArrayList<>();
+        for (int i = 0; i < pList.size(); i++) {
+            if (pList.get(i).getVorname().equals(vorname)){
+                gefunden.add(pList.get(i));
+            }
+        }
+        return gefunden;
+    }
+
+    public ArrayList<Wettkampfkarte> sName(String name, ArrayList<Wettkampfkarte> pList){
+        ArrayList<Wettkampfkarte> gefunden = new ArrayList<>();
+        for (int i = 0; i < pList.size(); i++) {
+            if (pList.get(i).getName().equals(name)){
+                gefunden.add(pList.get(i));
+            }
+        }
+        return gefunden;
+    }
+
+    public ArrayList<Wettkampfkarte> sKlasse(String klasse, ArrayList<Wettkampfkarte> pList){
+        ArrayList<Wettkampfkarte> gefunden = new ArrayList<>();
+        for (int i = 0; i < pList.size(); i++) {
+            if (pList.get(i).getKlasse().equals(klasse)){
+                gefunden.add(pList.get(i));
+            }
+        }
+        return gefunden;
+    }
+
+    public ArrayList<Wettkampfkarte> sAlter(int alter, ArrayList<Wettkampfkarte> pList){
+        ArrayList<Wettkampfkarte> gefunden = new ArrayList<>();
+        for (int i = 0; i < pList.size(); i++) {
+            if (pList.get(i).getAlter() == alter){
+                gefunden.add(pList.get(i));
+            }
+        }
+        return gefunden;
+    }
+
+    public ArrayList<Wettkampfkarte> sPunkte(int punkte, ArrayList<Wettkampfkarte> pList, int disziplin){
+        ArrayList<Wettkampfkarte> gefunden = new ArrayList<>();
+        for (int i = 0; i < pList.size(); i++) {
+            if (pList.get(i).getPunkte(disziplin) == punkte){
+                gefunden.add(pList.get(i));
+            }
+        }
+        return gefunden;
+    }
     public void shuffleList(){
         listW.toFirst();
         int laenge = 0;
