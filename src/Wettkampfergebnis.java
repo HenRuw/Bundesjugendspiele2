@@ -158,7 +158,7 @@ public class Wettkampfergebnis implements Sortable{
                 listW = quickSort(listW, pDisziplin);
                 break;
             case 5:
-                System.out.println("Quicksort:");
+                System.out.println("Radixsort:");
                 listW = radixSort(listW, pDisziplin);
 
         }
@@ -226,14 +226,19 @@ public class Wettkampfergebnis implements Sortable{
             buckets[i] = new Queue < Wettkampfkarte > ();
         }
         for (int i = 0; i < numberOfDigits; i++) {
-
             while (unsortiert.hasAccess()) {
                 buckets[stelleErmitteln(unsortiert.getContent().getPunkte(pDisziplin), i)].enqueue(unsortiert.getContent());
                 unsortiert.remove();
             }
 
+            for (int j = 0; j <= base; j++){
+                while(!buckets[j].isEmpty()){
+                    unsortiert.append(buckets[j].front());
+                    buckets[j].dequeue();
+                }
+            }
         }
-        return null;
+        return unsortiert;
     }
 
     private int numberOfDigits(int pNum){
