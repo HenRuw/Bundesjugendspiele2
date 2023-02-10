@@ -186,14 +186,14 @@ public class Wettkampfergebnis implements Sortable{
         if (gesucht.getAlter() != 0){
             gefundene = sAlter(gesucht.getAlter(), gefundene);
         }
-        if (gesucht.getPunkte(0) != 0){
-            gefundene = sPunkte(gesucht.getPunkte(0), gefundene, 0);
-        }
         if (gesucht.getPunkte(1) != 0){
             gefundene = sPunkte(gesucht.getPunkte(1), gefundene, 1);
         }
-        if (gesucht.getPunkte(2) != 0) {
+        if (gesucht.getPunkte(2) != 0){
             gefundene = sPunkte(gesucht.getPunkte(2), gefundene, 2);
+        }
+        if (gesucht.getPunkte(3) != 0) {
+            gefundene = sPunkte(gesucht.getPunkte(3), gefundene, 3);
         }
         return gefundene.get(0);
     }
